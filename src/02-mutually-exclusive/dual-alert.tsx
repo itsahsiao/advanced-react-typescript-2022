@@ -1,26 +1,33 @@
-import type { FC } from 'react';
-import { useIntl } from 'react-intl';
+import type { FC } from "react";
+import { useIntl } from "react-intl";
 
 type Variant =
-  | 'danger'
-  | 'dark'
-  | 'info'
-  | 'light'
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'warning';
+  | "danger"
+  | "dark"
+  | "info"
+  | "light"
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning";
 
-type Props = {
-  message?: string;
-  messageId?: string;
-  variant?: Variant;
-};
+type Props = (
+  | {
+      message: string;
+      messageId?: never;
+      variant?: Variant;
+    }
+  | {
+      message?: never;
+      messageId: string;
+      variant?: Variant;
+    }
+) & { variant?: Variant };
 
 export const DualAlert: FC<Props> = ({
   message,
   messageId,
-  variant = 'primary',
+  variant = "primary",
 }) => {
   const { formatMessage } = useIntl();
 
