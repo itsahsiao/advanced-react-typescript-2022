@@ -83,3 +83,12 @@ export default Home;
 
 const notString: string = '1';
 console.log(notString);
+
+const data = [1, 2, 3];
+// const item = data[1]; // TS thinks it’s a number -> correct
+const item = data[10]; // TS thinks it’s a number -> not correct, we’re out of the boundary UNTIL we add ``noUncheckedIndexedAccess: true` to TS config
+// console.log(item.toLocaleString()); // causes an unhandled runtime error
+
+if (item) {
+  console.log(item.toLocaleString());
+}
